@@ -1,0 +1,22 @@
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+public class Tree {
+
+	private ArrayList<Integer> xPoints = new ArrayList<Integer>(), yPoints = new ArrayList<Integer>();
+	
+	public Tree(int x, int y){
+		
+		
+	}
+	
+	public void grow(){
+		
+		
+	}
+	
+	public void draw(Graphics g){
+		
+		
+	}
+}

@@ -1,0 +1,27 @@
+package Graphics;
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+public class Tree {
+
+	private ArrayList<Integer> xPoints = new ArrayList<Integer>(), yPoints = new ArrayList<Integer>();
+	private Trunk trunk;
+	
+	public Tree(int x, int y){
+		
+		trunk = new Trunk(x, y);
+	}
+	
+	public void grow(){
+		
+		if(Math.random() < (double) (1 / (double) (1 + (trunk.getHeight() / 50)))){
+			
+			trunk.grow();
+		}
+	}
+	
+	public void draw(Graphics g){
+		
+		trunk.draw(g);
+	}
+}

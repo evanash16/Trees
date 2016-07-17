@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 2 elements to &apos;Randomly Generated Trees/src/Graphics&apos;&#x0D;&#x0A;- Original project: &apos;Randomly Generated Trees&apos;&#x0D;&#x0A;- Destination element: &apos;Randomly Generated Trees/src/Graphics&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Tree.java&#x0D;&#x0A;     GUI.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;Graphics" element1="/src&lt;{Tree.java" element2="/src&lt;{GUI.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1468788066333" units="2" version="1.0"/>
+</session>

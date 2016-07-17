@@ -1,0 +1,73 @@
+package Graphics;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+public class Trunk {
+
+	private ArrayList<Integer> xPoints = new ArrayList<Integer>(), yPoints = new ArrayList<Integer>();
+	private ArrayList<Branch> branches = new ArrayList<Branch>();
+	
+	public Trunk(int x, int y){
+		
+		xPoints.add(x);
+		yPoints.add(y);
+	}
+	
+	public void grow(){
+		
+		if(Math.random() < 0.5){
+			
+			xPoints.add(xPoints.get(xPoints.size() - 1) - 1);
+		}
+		
+		else{
+			
+			xPoints.add(xPoints.get(xPoints.size() - 1) + 1);
+		}
+		
+		yPoints.add(yPoints.get(yPoints.size() - 1) - 1);
+		
+		for(Branch b: branches){
+			
+			if(Math.random() < 0.25){b.grow();}
+		}
+		
+		if(getHeight() > 150 && Math.random() < 0.05){
+			
+			if(Math.random() < 0.5){branches.add(new Branch(xPoints.get(xPoints.size() - 1), yPoints.get(yPoints.size() - 1), Math.PI / 4));}
+			else{branches.add(new Branch(xPoints.get(xPoints.size() - 1), yPoints.get(yPoints.size() - 1), 3 * Math.PI / 4));}
+		}
+	}
+	
+	public void draw(Graphics g){
+		
+		if(Math.random() < (double) 1 / (1 + ((double) getHeight() / 100))){grow();}
+		
+		int[] tempXPoints = new int[xPoints.size()], tempYPoints = new int[yPoints.size()];
+		
+		for(int i = 0; i < tempXPoints.length; i++){
+			
+			tempXPoints[i] = xPoints.get(i);
+			tempYPoints[i] = yPoints.get(i);
+		}
+		
+		g.setColor(new Color(127, 106, 69));
+		g.drawPolyline(tempXPoints, tempYPoints, tempXPoints.length);
+		
+		int trunkBase = tempXPoints.length / 50;
+		
+		for(int i = 0; i < tempXPoints.length; i++){
+			
+			g.drawLine(tempXPoints[i] - (int) (trunkBase * ((double) (tempXPoints.length - i) / (double) tempXPoints.length)), tempYPoints[i], tempXPoints[i] + (int) (trunkBase * ((double) (tempXPoints.length - i) / (double) tempXPoints.length)), tempYPoints[i]);
+		}
+
+		for(Branch b: branches){
+			
+			b.draw(g);
+		}
+	}
+	
+	public int getHeight(){return yPoints.size();}
+}
