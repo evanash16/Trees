@@ -1,0 +1,12 @@
+package tree.oak;
+
+import tree.generic.Trunk;
+
+public class OakTrunk extends Trunk{
+
+	public OakTrunk(int x, int y) {
+		super(x, y);
+		// TODO Auto-generated constructor stub
+	}
+
+}

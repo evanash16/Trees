@@ -1,0 +1,13 @@
+package tree.oak;
+
+import Graphics.Tree;
+
+public class OakTree extends Tree{
+	
+	public OakTree(int x, int y) {
+		
+		super(x, y);
+		
+		setTrunk(new OakTrunk(x, y));
+	}
+}

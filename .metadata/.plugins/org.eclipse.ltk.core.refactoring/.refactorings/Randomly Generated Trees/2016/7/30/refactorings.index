@@ -1,1 +1,6 @@
 1468788066333	Move compilation units
+1468818088668	Move compilation units
+1468818526371	Rename package 'tree.oak'
+1468818536213	Rename type 'OakTree'
+1468818547326	Rename type 'OakTrunk'
+1468818968794	Rename local variable 'trunkBase'
