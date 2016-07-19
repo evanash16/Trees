@@ -1,4 +1,6 @@
 package tree.generic;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -6,6 +8,7 @@ public class Tree {
 
 	private ArrayList<Integer> xPoints = new ArrayList<Integer>(), yPoints = new ArrayList<Integer>();
 	private Trunk trunk;
+	private String type = "Generic";
 	
 	public Tree(double x, double y){
 		
@@ -20,8 +23,14 @@ public class Tree {
 	public void draw(Graphics g){
 		
 		trunk.draw(g);
+		
+		g.setColor(Color.BLACK);
+		g.setFont(new Font(null, Font.BOLD, 30));
+		g.drawString(type, trunk.getX() - (g.getFontMetrics().stringWidth(type) / 2), trunk.getY() + 50);
 	}
 	
 	public void setTrunk(Trunk trunk) {this.trunk = trunk;}
 	public void growTrunk(double chance) {trunk.grow();}
+	public int getHeight() {return trunk.getHeight();}
+	public void setType(String type) {this.type = type;}
 }

@@ -1,0 +1,112 @@
+package tree.generic;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.util.ArrayList;
+
+import Graphics.GUI;
+
+public class Branch {
+
+	private ArrayList<Double> xPoints = new ArrayList<Double>(), yPoints = new ArrayList<Double>();
+	private ArrayList<Leaf> leaves = new ArrayList<Leaf>();
+	private double direction;
+	
+	public Branch(double x, double y, double direction){
+		
+		xPoints.add(x);
+		yPoints.add(y);
+		
+		this.direction = direction; 
+	}
+	
+	public void grow(){
+		
+		if(Math.random() <= 0.5){
+			
+			changeYPoint((int) (Math.sin(direction)));
+		}
+		
+		else{
+			
+			changeYPoint((int) -(Math.sin(direction)));
+		}
+		
+		changeXPoint((int) (Math.signum(Math.cos(direction))));
+		
+		if(xPoints.size() > 50 && Math.random() < 0.05){
+			
+			int rand = 50 + (int) (Math.random() * (xPoints.size() - 51));
+			
+			if(Math.random() < 0.5){
+				leaves.add(new Leaf(xPoints.get(rand).intValue(), yPoints.get(rand).intValue(), 20, direction - Math.PI / 2));
+			
+			} 
+			else{
+				
+				leaves.add(new Leaf(xPoints.get(rand).intValue(), yPoints.get(rand).intValue(), 20, direction + Math.PI / 2));
+			}
+		}
+	}
+	
+	public void draw(Graphics g){
+		
+		int[] tempXPoints = new int[xPoints.size()], tempYPoints = new int[yPoints.size()];
+		
+		for(int i = 0; i < tempXPoints.length; i++){
+			
+			tempXPoints[i] = xPoints.get(i).intValue();
+			tempYPoints[i] = yPoints.get(i).intValue();
+		}
+		
+		g.setColor(new Color(127, 106, 69));
+		g.drawPolyline(tempXPoints, tempYPoints, tempXPoints.length);
+		
+		int branchBase = tempXPoints.length / 50;
+		
+		for(int i = 0; i < tempXPoints.length; i++){
+			
+			g.drawLine(tempXPoints[i] - (int) (branchBase * ((double) (tempXPoints.length - i) / (double) tempXPoints.length)), tempYPoints[i], tempXPoints[i] + (int) (branchBase * ((double) (tempXPoints.length - i) / (double) tempXPoints.length)), tempYPoints[i]);
+		}
+		
+		growLeaves(0.5);
+		
+		for(int i = 0; i < leaves.size(); i++){
+			
+			if(leaves.get(i).getY() > GUI.screensize.height){
+				
+				leaves.remove(i);
+				i--;
+			}
+			
+			else{
+				
+				leaves.get(i).draw(g);
+			}
+		}
+	}
+	
+	public double getEndX() {return xPoints.get(xPoints.size() - 1);}
+	public double getEndY() {return yPoints.get(yPoints.size() - 1);}
+	public double getLength() {return Math.sqrt(Math.pow(yPoints.get(yPoints.size() - 1) - yPoints.get(0), 2) + Math.pow(xPoints.get(xPoints.size() - 1) - xPoints.get(0), 2));}
+
+	public void addXPoint(double x) {xPoints.add(x);}
+	public void changeXPoint(double x) {xPoints.add(xPoints.get(xPoints.size() - 1) + x);}
+	public void addYPoint(double y) {yPoints.add(y);}
+	public void changeYPoint(double y) {yPoints.add(yPoints.get(yPoints.size() - 1) + y);}
+	
+	public void growLeaves(double chance) {for(Leaf l: leaves) {if(Math.random() < chance){l.grow();}}}
+	
+	public double getDirection() {return direction;}
+	
+	public Point randomPoint(int start) {
+		
+		if(start < xPoints.size()) {
+		
+			int rand = (int) (start + xPoints.get((int) (Math.random() * (double) (xPoints.size() - start))));
+			
+			return new Point(xPoints.get(rand), yPoints.getRand());
+		}
+	}
+}

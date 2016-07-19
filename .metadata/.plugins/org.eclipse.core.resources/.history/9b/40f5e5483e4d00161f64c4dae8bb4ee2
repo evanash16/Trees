@@ -1,0 +1,27 @@
+package tree.pine;
+
+import tree.generic.Branch;
+
+public class PineBranch extends Branch{
+
+	public PineBranch(double x, double y, double direction) {
+		
+		super(x, y, direction);
+	}
+	
+	public void grow(){
+			
+		if(Math.random() < 0.5){
+				
+			changeYPoint(Math.sin(getDirection()));
+		}
+		
+			
+		else{
+				
+			changeYPoint(Math.sin(getDirection()));
+		}
+			
+		changeXPoint((int) (Math.signum(Math.cos(getDirection()))));
+	}
+}

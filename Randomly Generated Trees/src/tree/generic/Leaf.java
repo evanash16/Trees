@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Leaf {
 	
 	private int[] xPoints, yPoints;
-	private ArrayList<Integer> leafX = new ArrayList<Integer>(), leafY = new ArrayList<Integer>();
+	private ArrayList<Double> leafX = new ArrayList<Double>(), leafY = new ArrayList<Double>();
 	private BufferedImage image;
 	private boolean drop = false, randomized = false;
 	private double velY = 5, x, y, direction;
@@ -28,8 +28,8 @@ public class Leaf {
 		
 		int x2 = finalHeight, y2 = finalHeight;
 		
-		leafX.add(x2);
-		leafY.add(y2);
+		addXPoint(x2);
+		addYPoint(y2);
 		
 		xPoints = new int[]{x2};
 		yPoints = new int[]{y2};
@@ -43,23 +43,17 @@ public class Leaf {
 			
 			if(Math.random() < 0.5) {
 				
-				leafX.add(leafX.get(leafX.size() - 1) - 1);
+				changeXPoint(1);
 			} 
-			else {leafX.add(leafX.get(leafX.size() - 1) +1);}
+			else {changeXPoint(-1);}
+
+			changeYPoint(1);
 			
-			leafY.add(leafY.get(leafY.size() - 1) - 1);
-			
-			xPoints = new int[leafX.size()];
-			yPoints = new int[leafY.size()];
-			
-			for(int i = 0; i < leafX.size(); i++){
-				
-				xPoints[i] = leafX.get(i);
-				yPoints[i] = leafY.get(i);
-			}
-			
-			drawToImage();
+			xPoints = getXPoints();
+			yPoints = getYPoints();
 		}
+		
+		drawToImage();
 	}
 	
 	public void drop(){
@@ -144,4 +138,20 @@ public class Leaf {
 	public int getX() {return (int) x;}
 	public int getY() {return (int) y;}
 	public int getHeight() {return (int) Math.sqrt(Math.pow(leafY.get(leafY.size() - 1) - leafY.get(0), 2) + Math.pow(leafX.get(leafX.size() - 1) - leafX.get(0), 2));}
+	public int getFinalHeight() {return finalHeight;}
+	
+	public void addXPoint(double x) {leafX.add(x);}
+	public void changeXPoint(double x) {leafX.add(leafX.get(leafX.size() - 1) + x);}
+	
+	public void addYPoint(double y) {leafY.add(y);}
+	public void changeYPoint(double y) {leafY.add(leafY.get(leafY.size() - 1) + y);}
+	
+	public int[] getXPoints() {int[] tempXArray = new int[leafX.size()]; for(int i = 0; i < leafX.size(); i++) {tempXArray[i] = leafX.get(i).intValue();} return tempXArray;}
+	public int[] getYPoints() {int[] tempYArray = new int[leafY.size()]; for(int i = 0; i < leafY.size(); i++) {tempYArray[i] = leafY.get(i).intValue();} return tempYArray;}
+	
+	public void setImage(BufferedImage image) {this.image =  image;}
+	
+	public double getDirection() {return direction;}
+	
+	public boolean isDropped() {return drop;}
 }

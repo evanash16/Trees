@@ -67,6 +67,8 @@ public class Trunk {
 	}
 	
 	public int getHeight(){return yPoints.size();}
+	public int getX() {return xPoints.get(0).intValue();}
+	public int getY() {return yPoints.get(0).intValue();}
 	
 	public void addXPoint(double x) {xPoints.add(x);}
 	public void changeXPoint(double x) {xPoints.add(xPoints.get(xPoints.size() - 1) + x);}

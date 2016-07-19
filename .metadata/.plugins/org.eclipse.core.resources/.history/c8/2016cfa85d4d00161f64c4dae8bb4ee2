@@ -1,0 +1,87 @@
+package tree.pine;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import tree.generic.Leaf;
+
+public class PineLeaf extends Leaf{
+	
+	private BufferedImage image;
+	
+	public PineLeaf(int x, int y, int height, double direction){
+		
+		super(x, y, height, direction);
+		
+		drawToImage();
+	}
+	
+	public void grow(){
+		
+		if(!isDropped() && getHeight() < getFinalHeight()){
+			
+			if(Math.random() < 0.5) {
+				
+				changeXPoint(1);
+			} 
+			else {changeXPoint(-1);}
+			
+			changeYPoint(-1);
+			
+			drawToImage();
+		}
+	}
+	
+	public void update(){
+		
+		
+	}
+	
+	public void drawToImage(){
+
+		image = new BufferedImage(getFinalHeight() * 2, getFinalHeight() * 2, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2D = (Graphics2D) image.getGraphics();
+		
+		AffineTransform at = new AffineTransform();
+		at.rotate(getDirection(), image.getWidth() / 2, image.getHeight() / 2);
+		g2D.setTransform(at);
+		
+		g2D.setColor(Color.GRAY);
+		g2D.drawPolyline(getXPoints(), getYPoints(), getXPoints().length);
+	}
+	
+	public Color randomColor(){
+		
+		int rand = (int) ((System.currentTimeMillis() % 80000) / 20000);
+		
+		switch(rand){
+		
+		case 1:
+			
+			return Color.RED;
+		case 2:
+			
+			return Color.ORANGE;
+		case 3:
+			
+			return Color.YELLOW;
+		case 4:
+			
+			return Color.BLUE;
+		default:
+			
+			return Color.MAGENTA;
+		}
+		
+	}
+	
+	public void draw(Graphics g){
+
+		update();
+		g.drawImage(image, (int) x - (image.getWidth() / 2), (int) y - (image.getHeight() / 2), null);
+	}
+}

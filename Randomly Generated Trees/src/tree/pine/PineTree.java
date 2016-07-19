@@ -9,10 +9,11 @@ public class PineTree extends Tree{
 		super(x, y);
 		
 		setTrunk(new PineTrunk(x, y));
+		setType("Pine");
 	}
 	
 	public void grow(){
 		
-		growTrunk(1);
+		growTrunk((double) 1 / (double) (1 + (getHeight() / 50)));
 	}
 }

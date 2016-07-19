@@ -1,5 +1,8 @@
 package tree.pine;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
 import tree.generic.Branch;
 
 public class PineBranch extends Branch{
@@ -13,14 +16,36 @@ public class PineBranch extends Branch{
 			
 		if(Math.random() < 0.5){
 				
-			changeYPoint((int) (Math.sin(getDirection())) + (getLength() / 200));
+			changeYPoint(Math.sin(getDirection()));
 		}
-			
 		else{
 				
-			changeYPoint((int) (Math.sin(getDirection())) + (getLength() / 200));
+			changeYPoint(-1.25 * Math.sin(getDirection()));
 		}
 			
 		changeXPoint((int) (Math.signum(Math.cos(getDirection()))));
+		
+		if(Math.random() < 0.5){
+			
+			Point randomPoint = randomPoint(5);
+			
+			if(randomPoint != null){
+				
+				if(getLength() > 10 && Math.random() < 0.5){
+					
+					addLeaf(new PineLeaf(randomPoint.x, randomPoint.y, 20, getDirection() - Math.PI / 2));
+				} 
+				else{
+					
+					addLeaf(new PineLeaf(randomPoint.x, randomPoint.y, 20, getDirection() + Math.PI / 2));
+				}
+			}
+		}
+	}
+	
+	public void draw(Graphics g){
+		
+		super.draw(g);
+		growLeaves(1);
 	}
 }

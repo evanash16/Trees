@@ -4,17 +4,18 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import tree.generic.Tree;
-import tree.pine.PineTree;
+import tree.generic.*;
+import tree.pine.*;
 
 public class GUI extends JFrame{
 	
 	public static Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-	private Tree tree;
-
+	private ArrayList<Tree> trees = new ArrayList<Tree>();
+	
 	public static void main(String[] args) {
 		
 		GUI gui = new GUI();
@@ -33,8 +34,9 @@ public class GUI extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 
-		tree = new PineTree(getWidth() / 2, 5 * (getHeight() / 6));
-		
+		trees.add(new Tree(getWidth() / 3, 5 * (getHeight() / 6)));
+		trees.add(new PineTree(2 * (getWidth() / 3), 5 * (getHeight() / 6)));
+
 		setVisible(true);
 		
 		while(isVisible()){
@@ -54,8 +56,11 @@ public class GUI extends JFrame{
 		g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, getWidth(), getHeight());
 		
-		tree.grow();
-		tree.draw(g2);
+		for(Tree t: trees){
+			
+			t.grow();
+			t.draw(g2);
+		}
 		
 		g.drawImage(buffer, 0, 0, null);
 	}
