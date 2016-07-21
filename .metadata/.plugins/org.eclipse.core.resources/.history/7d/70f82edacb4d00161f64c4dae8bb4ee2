@@ -1,0 +1,9 @@
+package tree.pine;
+
+public class PineCone extends Leaf{
+
+	public PineCone(int x, int y){
+		
+		
+	}
+}

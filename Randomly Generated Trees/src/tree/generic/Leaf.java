@@ -13,7 +13,7 @@ public class Leaf {
 	private ArrayList<Double> leafX = new ArrayList<Double>(), leafY = new ArrayList<Double>();
 	private BufferedImage image;
 	private boolean drop = false, randomized = false;
-	private double velY = 5, x, y, direction;
+	private double velX = 0, velY = 5, x, y, direction;
 	private Color color = Color.GREEN;
 	private int finalHeight;
 	
@@ -137,6 +137,18 @@ public class Leaf {
 	
 	public int getX() {return (int) x;}
 	public int getY() {return (int) y;}
+	public void setX(int x) {this.x = x;}
+	public void setY(int y) {this.y = y;}
+	public void changeX(double x) {this.x += x;}
+	public void changeY(double y) {this.y += y;}
+	
+	public double getVelX() {return velX;}
+	public double getVelY() {return velY;}
+	public void setVelX(double velX) {this.velX = velX;}
+	public void setVelY(double velY) {this.velY = velY;}
+	public void changeVelX(double accX) {this.velX += accX;}
+	public void changeVelY(double accY) {this.velY += accY;}
+	
 	public int getHeight() {return (int) Math.sqrt(Math.pow(leafY.get(leafY.size() - 1) - leafY.get(0), 2) + Math.pow(leafX.get(leafX.size() - 1) - leafX.get(0), 2));}
 	public int getFinalHeight() {return finalHeight;}
 	

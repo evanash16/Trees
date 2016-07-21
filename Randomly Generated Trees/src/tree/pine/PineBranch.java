@@ -39,6 +39,11 @@ public class PineBranch extends Branch{
 					
 					addLeaf(new PineLeaf(randomPoint.x, randomPoint.y, 20, getDirection() + Math.PI / 2));
 				}
+				
+				if(Math.random() < 0.005){
+					
+					addLeaf(new PineCone(randomPoint.x, randomPoint.y, 20));
+				}
 			}
 		}
 	}
@@ -46,6 +51,5 @@ public class PineBranch extends Branch{
 	public void draw(Graphics g){
 		
 		super.draw(g);
-		growLeaves(1);
 	}
 }

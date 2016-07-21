@@ -71,20 +71,9 @@ public class Branch {
 		}
 		
 		growLeaves(0.5);
+		removeLeaves();
 		
-		for(int i = 0; i < leaves.size(); i++){
-			
-			if(leaves.get(i).getY() > GUI.screensize.height){
-				
-				leaves.remove(i);
-				i--;
-			}
-			
-			else{
-				
-				leaves.get(i).draw(g);
-			}
-		}
+		for(Leaf l: leaves) {l.draw(g);}
 	}
 	
 	public double getEndX() {return xPoints.get(xPoints.size() - 1);}
@@ -111,5 +100,17 @@ public class Branch {
 		}
 		
 		return null;
+	}
+	
+	public void removeLeaves(){
+		
+		for(int i = 0; i < leaves.size(); i++){
+			
+			if(leaves.get(i).getY() > GUI.screensize.height){
+				
+				leaves.remove(i);
+				i--;
+			}
+		}
 	}
 }
