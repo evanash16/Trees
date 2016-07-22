@@ -1,5 +1,6 @@
 package tree.pine;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -7,9 +8,9 @@ import tree.generic.Branch;
 
 public class PineBranch extends Branch{
 
-	public PineBranch(double x, double y, double direction) {
+	public PineBranch(double x, double y, double direction, Color color) {
 		
-		super(x, y, direction);
+		super(x, y, direction, color);
 	}
 	
 	public void grow(){

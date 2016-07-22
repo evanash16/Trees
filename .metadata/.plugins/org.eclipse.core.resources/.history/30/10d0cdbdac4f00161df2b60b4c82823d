@@ -1,0 +1,55 @@
+package tree.cedar;
+
+import java.awt.Graphics;
+import java.awt.Point;
+
+import tree.generic.Branch;
+
+public class CedarBranch extends Branch{
+
+	public CedarBranch(double x, double y, double direction) {
+		
+		super(x, y, direction);
+	}
+	
+	public void grow(){
+			
+		if(Math.random() < 0.5){
+				
+			changeYPoint(Math.sin(getDirection()));
+		}
+		else{
+				
+			changeYPoint(-1.25 * Math.sin(getDirection()));
+		}
+			
+		changeXPoint((int) (Math.signum(Math.cos(getDirection()))));
+		
+		if(Math.random() < 0.5){
+			
+			Point randomPoint = randomPoint(5);
+			
+			if(randomPoint != null){
+				
+				if(getLength() > 10 && Math.random() < 0.5){
+					
+					addLeaf(new CedarLeaf(randomPoint.x, randomPoint.y, 20, getDirection() - Math.PI / 2));
+				} 
+				else{
+					
+					addLeaf(new CedarLeaf(randomPoint.x, randomPoint.y, 20, getDirection() + Math.PI / 2));
+				}
+				
+				if(Math.random() < 0.005){
+					
+					addLeaf(new CedarCone(randomPoint.x, randomPoint.y, 20));
+				}
+			}
+		}
+	}
+	
+	public void draw(Graphics g){
+		
+		super.draw(g);
+	}
+}

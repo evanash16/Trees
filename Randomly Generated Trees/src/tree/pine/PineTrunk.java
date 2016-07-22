@@ -27,8 +27,8 @@ public class PineTrunk extends Trunk{
 		growBranches(0.25);
 		
 		if(getHeight() > 50 && Math.random() < 0.15) {
-			if(Math.random() < 0.5){addBranch(new PineBranch(lastXPoint(), lastYPoint(), Math.PI / 4));}
-			else{addBranch(new PineBranch(lastXPoint(), lastYPoint(), 3 * Math.PI / 4));}
+			if(Math.random() < 0.5){addBranch(new PineBranch(lastXPoint(), lastYPoint(), Math.PI / 4, getColor()));}
+			else{addBranch(new PineBranch(lastXPoint(), lastYPoint(), 3 * Math.PI / 4, getColor()));}
 		}
 	}
 }

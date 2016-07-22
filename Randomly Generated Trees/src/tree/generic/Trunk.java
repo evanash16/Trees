@@ -8,6 +8,7 @@ public class Trunk {
 
 	private ArrayList<Double> xPoints = new ArrayList<Double>(), yPoints = new ArrayList<Double>();
 	private ArrayList<Branch> branches = new ArrayList<Branch>();
+	private Color color = new Color(127, 106, 69);
 	
 	public Trunk(Double x, Double y){
 		
@@ -33,14 +34,12 @@ public class Trunk {
 		
 		if(getHeight() > 150 && Math.random() < 0.05){
 			
-			if(Math.random() < 0.5){branches.add(new Branch(lastXPoint(), lastYPoint(), Math.PI / 4));}
-			else{branches.add(new Branch(lastXPoint(), lastYPoint(), 3 * Math.PI / 4));}
+			if(Math.random() < 0.5){branches.add(new Branch(lastXPoint(), lastYPoint(), Math.PI / 4, color));}
+			else{branches.add(new Branch(lastXPoint(), lastYPoint(), 3 * Math.PI / 4, color));}
 		}
 	}
 	
 	public void draw(Graphics g){
-		
-		if(Math.random() < (double) 1 / (1 + ((double) getHeight() / 100))){grow();}
 		
 		int[] tempXPoints = new int[xPoints.size()], tempYPoints = new int[yPoints.size()];
 		
@@ -50,7 +49,7 @@ public class Trunk {
 			tempYPoints[i] = yPoints.get(i).intValue();
 		}
 		
-		g.setColor(new Color(127, 106, 69));
+		g.setColor(color);
 		g.drawPolyline(tempXPoints, tempYPoints, tempXPoints.length);
 		
 		int trunkBase = tempXPoints.length / 50;
@@ -80,4 +79,7 @@ public class Trunk {
 	
 	public void addBranch(Branch b) {branches.add(b);}
 	public void growBranches(double chance) {for(Branch b: branches) {if(b.getEndY() < yPoints.get(0) && Math.random() < chance) {b.grow();}}}
+
+	public void setColor(Color color) {this.color = color;}
+	public Color getColor() {return color;}
 }

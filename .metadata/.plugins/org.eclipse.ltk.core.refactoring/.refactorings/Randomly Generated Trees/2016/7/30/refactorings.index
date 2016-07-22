@@ -4,3 +4,9 @@
 1468818536213	Rename type 'OakTree'
 1468818547326	Rename type 'OakTrunk'
 1468818968794	Rename local variable 'trunkBase'
+1469151149213	Copy compilation units
+1469151158703	Rename type 'PineBranch'
+1469151166185	Rename type 'PineCone'
+1469151182505	Rename type 'PineLeaf'
+1469151187247	Rename type 'PineTree'
+1469151192117	Rename type 'PineTrunk'

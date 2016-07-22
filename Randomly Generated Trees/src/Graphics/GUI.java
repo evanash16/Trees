@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import tree.generic.Tree;
+import tree.cedar.CedarTree;
 import tree.pine.PineTree;
 
 public class GUI extends JFrame{
 	
 	public static Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
 	private Tree tree;
-	private Thread t;
 	
 	public static void main(String[] args) {
 		
@@ -35,7 +35,7 @@ public class GUI extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 
-		tree = new PineTree(getWidth() / 2, 5 * (getHeight() / 6));
+		tree = new CedarTree(getWidth() / 2, 5 * (getHeight() / 6));
 
 		setVisible(true);
 		
